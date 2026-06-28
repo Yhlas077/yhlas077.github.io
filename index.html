@@ -1,230 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yhlas Annayew | Software Developer Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yhlas Annayew | Backend Developer</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0a0f1e;--bg2:#0f172a;--card:#111827;--card2:#1a2236;
+      --accent:#38bdf8;--accent2:#818cf8;--text:#f1f5f9;--muted:#64748b;
+      --border:#1e293b;--glow:rgba(56,189,248,.15)
+    }
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,15,30,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-weight:700;font-size:1.1rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
 
-        header {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem 2rem 2rem;
-            text-align: center;
-        }
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(56,189,248,.08),transparent)}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);color:var(--accent);padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.05em;margin-bottom:1.5rem}
+    .hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+    h1.name{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+    .gradient-text{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 60%,#f472b6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    h2.role{color:var(--text);font-size:clamp(1.8rem,4vw,3rem);font-weight:600;margin-top:.25rem;margin-bottom:1.25rem}
+    .hero p{color:var(--muted);font-size:1.1rem;max-width:520px;margin:0 auto 2.5rem;line-height:1.7}
+    .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--accent);color:#0a0f1e;padding:.75rem 1.75rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .2s}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,.3)}
+    .btn-ghost{border:1px solid var(--border);color:var(--muted);padding:.75rem 1.75rem;border-radius:8px;text-decoration:none;font-size:.95rem;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .scroll-hint{margin-top:4rem;color:var(--muted);font-size:.8rem;animation:bounce 2s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-        .profile-title {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
+    section.wrap{padding:5rem 2rem;max-width:960px;margin:0 auto}
+    .section-label{font-size:.8rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+    .section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:3rem;color:var(--text)}
+    .section-title span{color:var(--muted)}
 
-        .profile-subtitle {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
+    .skill-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1rem;text-align:center;font-size:.9rem;font-weight:600;cursor:default;transition:all .25s;position:relative;overflow:hidden}
+    .skill-item::after{content:'';position:absolute;inset:0;background:var(--glow);opacity:0;transition:opacity .25s}
+    .skill-item:hover{border-color:var(--accent);transform:translateY(-4px);color:var(--accent)}
+    .skill-item:hover::after{opacity:1}
+    .skill-icon{font-size:1.6rem;margin-bottom:.5rem;display:block}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .proj-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all .25s;position:relative;overflow:hidden}
+    .proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+    .proj-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+    .proj-card:hover::before{opacity:1}
+    .proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+    .proj-title{font-size:1.1rem;font-weight:700;color:var(--text)}
+    .proj-icon{width:36px;height:36px;background:rgba(56,189,248,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .proj-desc{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:1.25rem}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+    .tag{background:rgba(56,189,248,.08);color:var(--accent);border:1px solid rgba(56,189,248,.15);padding:.2rem .65rem;border-radius:6px;font-size:.78rem;font-weight:600}
+    .tag.purple{background:rgba(129,140,248,.08);color:var(--accent2);border-color:rgba(129,140,248,.15)}
 
-        section {
-            margin-bottom: 3rem;
-        }
+    .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:3rem}
+    .stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+    .stat-num{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-lbl{font-size:.8rem;color:var(--muted);margin-top:.25rem}
 
-        h2 {
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--card-bg);
-            padding-bottom: 0.5rem;
-            color: var(--text-main);
-            margin-bottom: 1.5rem;
-        }
+    .about-text{color:var(--muted);font-size:1.05rem;line-height:1.8;max-width:680px}
 
-        .about-text {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
+    .contact-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3rem;text-align:center;position:relative;overflow:hidden}
+    .contact-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 0%,rgba(56,189,248,.05),transparent);pointer-events:none}
+    .contact-title{font-size:1.8rem;font-weight:700;margin-bottom:.75rem}
+    .contact-sub{color:var(--muted);margin-bottom:2rem;font-size:1rem}
+    .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .c-link{display:flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .2s}
+    .c-link.email{background:var(--accent);color:#0a0f1e}
+    .c-link.email:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,.3)}
+    .c-link.github{border:1px solid var(--border);color:var(--muted)}
+    .c-link.github:hover{border-color:var(--accent2);color:var(--accent2)}
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
+    footer{text-align:center;padding:2.5rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
 
-        .skill-card {
-            background-color: var(--card-bg);
-            padding: 1rem;
-            text-align: center;
-            border-radius: 8px;
-            font-weight: 500;
-            border: 1px solid #334155;
-            transition: transform 0.2s;
-        }
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #334155;
-        }
-
-        .project-card h3 {
-            margin-top: 0;
-            color: var(--accent);
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .tags {
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: #334155;
-            color: var(--text-main);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #0f172a;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: opacity 0.2s;
-        }
-
-        .contact-btn:hover {
-            opacity: 0.9;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--card-bg);
-        }
-    </style>
+    @media(max-width:600px){
+      .nav-links{gap:1rem}
+      section.wrap{padding:3.5rem 1.25rem}
+      .contact-wrap{padding:2rem 1.25rem}
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="profile-title">Yhlas Annayew</h1>
-        <div class="profile-subtitle">Software Developer</div>
-        <p class="about-text" style="max-width: 600px; margin: 1.5rem auto 0 auto;">
-            University student passionate about backend development, algorithms, and building efficient system architectures. 
-        </p>
-    </header>
+<nav>
+  <div class="nav-logo">YA.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <div class="container">
-        
-        <!-- About Me Section -->
-        <section>
-            <h2>About Me</h2>
-            <p class="about-text">
-                I am focused on developing robust backend solutions and managing databases. 
-                In my free time, I enjoy solving complex algorithmic challenges and deep-diving into system administration.
-            </p>
-        </section>
-
-        <!-- Technical Skills Section -->
-        <section>
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">Go (Golang)</div>
-                <div class="skill-card">Gin Framework</div>
-                <div class="skill-card">PostgreSQL</div>
-                <div class="skill-card">Linux / Ubuntu</div>
-                <div class="skill-card">Data Structures</div>
-                <div class="skill-card">Git & GitHub</div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section>
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <h3>Pharmacy Management API</h3>
-                    <p>A secure backend system featuring user authentication, role-based route protection, and structured JSON body binding for inventory operations.</p>
-                    <div class="tags">
-                        <span class="tag">Go</span>
-                        <span class="tag">Gin</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">JWT</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <h3>Chess Logic Board</h3>
-                    <p>An interactive application built to parse chess board matrices, applying dynamic algorithms to track valid moves and game logic states.</p>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Tkinter</span>
-                        <span class="tag">Algorithms</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section style="text-align: center;">
-            <h2>Get In Touch</h2>
-            <p class="about-text">I am always open to discussing new projects, database designs, or technical collaborations.</p>
-            <a href="mailto:your-email@example.com" class="contact-btn">Email Me</a>
-        </section>
-
+<section class="hero">
+  <div>
+    <div class="hero-badge">Available for opportunities</div>
+    <h1 class="name"><span class="gradient-text">Yhlas Annayew</span></h1>
+    <h2 class="role">Backend Developer</h2>
+    <p>University student building robust backend systems, efficient APIs, and clean database architectures. Passionate about algorithms and system design.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
     </div>
+    <div class="scroll-hint">↓ scroll to explore</div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Yhlas Annayew. Built with HTML & CSS, hosted on GitHub Pages.</p>
-    </footer>
+<section class="wrap fade-in" id="about">
+  <div class="section-label">Background</div>
+  <div class="section-title">About <span>me</span></div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">2+</div><div class="stat-lbl">Years coding</div></div>
+    <div class="stat-box"><div class="stat-num">6+</div><div class="stat-lbl">Technologies</div></div>
+    <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Featured projects</div></div>
+    <div class="stat-box"><div class="stat-num">∞</div><div class="stat-lbl">Algorithms solved</div></div>
+  </div>
+  <p class="about-text">
+    I'm focused on developing robust backend solutions and managing databases efficiently.
+    My approach centers on writing clean, maintainable code with strong architectural foundations.
+    In my free time, I enjoy solving complex algorithmic challenges and deep-diving into system administration — always looking for that elegant solution.
+  </p>
+</section>
+
+<section class="wrap fade-in" id="skills">
+  <div class="section-label">Technical</div>
+  <div class="section-title">Skills & <span>tools</span></div>
+  <div class="skills-grid">
+    <div class="skill-item"><span class="skill-icon">🐹</span>Go (Golang)</div>
+    <div class="skill-item"><span class="skill-icon">⚡</span>Gin Framework</div>
+    <div class="skill-item"><span class="skill-icon">🐘</span>PostgreSQL</div>
+    <div class="skill-item"><span class="skill-icon">🐧</span>Linux / Ubuntu</div>
+    <div class="skill-item"><span class="skill-icon">🔗</span>Data Structures</div>
+    <div class="skill-item"><span class="skill-icon">🐙</span>Git & GitHub</div>
+  </div>
+</section>
+
+<section class="wrap fade-in" id="projects">
+  <div class="section-label">Work</div>
+  <div class="section-title">Featured <span>projects</span></div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-title">Pharmacy Management API</div>
+        <div class="proj-icon">💊</div>
+      </div>
+      <p class="proj-desc">A secure backend system featuring user authentication, role-based route protection, and structured JSON body binding for inventory operations.</p>
+      <div class="proj-tags">
+        <span class="tag">Go</span>
+        <span class="tag">Gin</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">JWT</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-header">
+        <div class="proj-title">Chess Logic Board</div>
+        <div class="proj-icon">♟️</div>
+      </div>
+      <p class="proj-desc">An interactive application built to parse chess board matrices, applying dynamic algorithms to track valid moves and game logic states.</p>
+      <div class="proj-tags">
+        <span class="tag purple">Python</span>
+        <span class="tag purple">Tkinter</span>
+        <span class="tag purple">Algorithms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap fade-in" id="contact">
+  <div class="section-label">Let's talk</div>
+  <div class="contact-wrap">
+    <div class="contact-title">Ready to <span class="gradient-text">collaborate?</span></div>
+    <p class="contact-sub">Always open to discussing new projects, database designs, or technical collaborations.</p>
+    <div class="contact-links">
+      <!-- E-mailyňy şu ýere goy -->
+      <a href="mailto:your-email@example.com" class="c-link email">✉ Email Me</a>
+      <!-- GitHub linkyňy şu ýere goy -->
+      <a href="https://github.com/yourusername" class="c-link github">⌥ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Yhlas Annayew — Built with HTML, CSS & JS</p>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
 
 </body>
 </html>
